@@ -5,7 +5,11 @@
     "keywords": ["bug","bugs","tracker","issue","issues", "web"],
     "homepage": "http://flyspray.org",
     "license": "",
+    "suggest":{
+        "ircmaxell/password-compat": "for php version < php5.5",
+    },
     "require": {
+        "ircmaxell/password-compat": "1.*",
         "swiftmailer/swiftmailer": "@stable",
         "adodb/adodb-php": "5.*",
         "jamiebicknell/Sparkline": "1.*",
