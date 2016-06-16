@@ -1230,6 +1230,24 @@ switch ($action = Req::val('action'))
                                    ".join(',', $cols).")
                          VALUES  ( ". $db->fill_placeholders($cols, 3) .")", $args);
 
+		// Add a group project like the reporter global but only for that project
+		$cols = array( 'view_tasks', 'open_new_tasks',
+                'view_comments',
+                'add_comments', 
+                'create_attachments', 'view_history', 
+				'edit_own_comments', 'view_roadmap', 
+				'view_groups_tasks');
+        $args = array_fill(0, count($cols), '1');
+        array_unshift($args, 'Project Reporters',
+                'Open new tasks, add comments in a project.',
+                intval($pid));
+
+        $db->Query("INSERT INTO  {groups}
+                                 ( group_name, group_desc, project_id,
+                                   ".join(',', $cols).")
+                         VALUES  ( ". $db->fill_placeholders($cols, 3) .")", $args);
+		
+
         $db->Query("INSERT INTO  {list_category}
                                  ( project_id, category_name,
                                    show_in_list, category_owner, lft, rgt)
